@@ -18,13 +18,14 @@ class Configurator
         4 => 'openlayer'
     ];
 
-    public static function preInstall(Event $event)
+    public static function preInstall(PackageEvent $event)
     {
         $composer = $event->getComposer();
         $IO = $event->getIo();
         $library = (int)$IO->ask('Wich map Library do you want to use ? (1 : leaflet, 2 : googlemaps, 3 : mapbox, 4 : openlayer, 0 for all)');
         $config = new Config();
         $source = new Config\JsonConfigSource();
+
         if($library === 1) {
             $source->addConfigSetting('require', ['symfony/http-kernel' => '^4.4.17|^5.0'] );
         }
@@ -41,7 +42,7 @@ class Configurator
         $composer->setConfig($config);
     }
 
-    public static function postInstall(Event $event)
+    public static function postInstall(PackageEvent $event)
     {
         $IO = $event->getIo();
 

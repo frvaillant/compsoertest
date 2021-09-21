@@ -19,7 +19,7 @@
         "composer/composer": "^2.1"
     },
     "scripts": {
-        "pre-install-cmd": "ComposerTest\\Configurator::preInstall",
-        "post-install-cmd": "ComposerTest\\Configurator::postInstall"
+        "pre-package-install": "ComposerTest\\Configurator::preInstall",
+        "post-package-install": "ComposerTest\\Configurator::postInstall"
     }
 }
