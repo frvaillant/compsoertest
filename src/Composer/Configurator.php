@@ -20,11 +20,14 @@ class Configurator
 
     public static function preInstall(PackageEvent $event)
     {
+        $installedPackage = $event->getOperation()->getPackage();
         $composer = $event->getComposer();
         $IO = $event->getIo();
         $library = (int)$IO->ask('Wich map Library do you want to use ? (1 : leaflet, 2 : googlemaps, 3 : mapbox, 4 : openlayer, 0 for all)');
         $config = new Config();
         $source = new Config\JsonConfigSource();
+
+        $source->addConfigSetting('require', ['symfony/twig-bundle' => '^4.4.17|^5.0'] );
 
         if($library === 1) {
             $source->addConfigSetting('require', ['symfony/http-kernel' => '^4.4.17|^5.0'] );
@@ -34,8 +37,6 @@ class Configurator
         }
         if($library === 3) {
             $source->addConfigSetting('require', ['symfony/config' => '^4.4.17|^5.0'] );
-        } else {
-            $source->addConfigSetting('require', ['symfony/twig-bundle' => '^4.4.17|^5.0'] );
         }
 
         $config->setConfigSource($source);
@@ -44,6 +45,7 @@ class Configurator
 
     public static function postInstall(PackageEvent $event)
     {
+        $installedPackage = $event->getOperation()->getPackage();
         $IO = $event->getIo();
 
         if($IO->askConfirmation('Supprimer les dépendances inutiles ?')) {
