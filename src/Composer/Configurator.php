@@ -27,7 +27,7 @@ class Configurator
         $config = new Config();
         $source = new Config\JsonConfigSource();
 
-        $source->addConfigSetting('require', ['symfony/twig-bundle' => '^4.4.17|^5.0'] );
+        //$source->addConfigSetting('require', ['symfony/twig-bundle' => '^4.4.17|^5.0'] );
 
         if($library === 1) {
             $source->addConfigSetting('require', ['symfony/http-kernel' => '^4.4.17|^5.0'] );
