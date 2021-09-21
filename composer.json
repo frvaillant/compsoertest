@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Francois\\Composertest\\": "src/"
+            "ComposerTest\\": "src/"
         }
     },
     "authors": [
@@ -14,5 +14,12 @@
             "email": "frvaillant@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.4.0",
+        "composer/composer": "^2.1"
+    },
+    "scripts": {
+        "pre-install-cmd": "ComposerTest\\Configurator::preInstall",
+        "post-install-cmd": "ComposerTest\\Configurator::postInstall"
+    }
 }
